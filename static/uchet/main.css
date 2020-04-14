@@ -1,0 +1,26 @@
+.otdel-list{
+    list-style: none;
+}
+
+.otdel-item{
+    margin-bottom: 20px;
+}
+
+
+/*-----------DASHBOARD-----------------*/
+.search-name{
+    padding: 5px 60px 5px 5px;
+}
+
+.search-phone{
+    padding: 5px 40px 5px 5px;
+}
+
+
+.search-btn{
+    background-color: #17A2B8;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 5px 35px;
+    color: white;
+}

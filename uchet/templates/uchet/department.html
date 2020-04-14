@@ -1,0 +1,67 @@
+{%  extends 'uchet/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+    <!-----------Department actions------------>
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Department: {{ department.name }}</h5>
+			<hr>
+            <a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'update_department' department.id %}">Update Department</a>
+            <a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_position' %}">Create position</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'replace_employees' department.id %}">Replace employees</a>
+
+		</div>
+	</div>
+    <!-----------Department information------------>
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Department Information</h5>
+			<hr>
+            <p>Phone: {{ department.phone }} </p>
+            <p>Positions: {{ pos_count }} </p>
+            <p>Employees: {{ emp_count }} </p>
+		</div>
+	</div>
+    <!-----------Department salary fund------------>
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Salary fund</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">Basic: {{ salary_fund }}</h1>
+			<h1 style="text-align: center;padding: 10px">Common: {{ salary_fund_main }}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<hr>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Position</th>
+					<th>Salary</th>
+					<th>Employees</th>
+				</tr>
+
+				{% for position in positions %}
+					<tr>
+						<td>{{position.name}}</td>
+						<td>{{position.zarplata}}</td>
+						<td>{{ position.employee_set.count }}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

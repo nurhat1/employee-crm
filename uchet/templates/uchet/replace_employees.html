@@ -1,0 +1,18 @@
+{% extends 'uchet/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<h2>Current department: {{ department.name }}</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    <label>Select department where you want to replace employees</label>
+        <select name="select_dep">
+            {% for department in departments %}
+            <option value="{{ department.name }}">{{ department.name }}</option>
+            {% endfor %}
+        </select>
+        <hr>
+    <input type="submit" value="Replace">
+</form>
+
+{% endblock %}

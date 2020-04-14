@@ -1,0 +1,79 @@
+{%  extends 'uchet/main.html' %}
+
+{% block content %}
+
+<br>
+<!-----------FILTER EMPLOYEES-------------->
+<div class="row">
+	<div class="col-md-9">
+		<div class="card card-body">
+			<form method="GET">
+
+				<input type="text" placeholder="Search by name ... " class="search-name" name="search_name">
+                <select name="select_dep">
+					<option value="">---</option>
+					{% for department in departments %}
+                    <option value="{{ department.name }}">{{ department.name }}</option>
+                    {% endfor %}
+                </select>
+                <select name="select_pos">
+					<option value="">---</option>
+					{% for position in positions %}
+                    <option value="{{ position.name }}">{{ position.name }}</option>
+                    {% endfor %}
+                </select>
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+
+
+	<!--------------ADD EMPLOYEE----------------->
+	<div class="col-md-3">
+		<div class="card card-body">
+            <div>
+                <a class="btn btn-sm btn-info" href="{% url 'add_employee' %}">Add employee</a>
+			</div>
+			
+		</div>
+	</div>
+	
+</div>
+<br>
+
+
+<!--------------------EMPLOYEES LIST---------------------->
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Employee</th>
+					<th>Position</th>
+                    <th>Salary</th>
+                    <th>Phone</th>
+                    <th>Hired date</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for employee in employees %}
+
+				<tr>
+					<td>{{ employee.last_name }} {{ employee.first_name }}</td>
+					<td>{{ employee.position }}</td>
+                    <td>{{ employee.position.zarplata }}</td>
+                    <td>{{ employee.position.otdel.phone }}</td>
+					<td>{{ employee.hired_date }}</td>
+					<td><a href="{% url 'update_employee' employee.id %}" class="btn btn-sm btn-info">Update</a></td>
+					<td><a href="{% url 'delete_employee' employee.id %}" class="btn btn-sm btn-danger">Remove</a></td>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

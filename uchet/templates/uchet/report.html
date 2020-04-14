@@ -1,0 +1,35 @@
+{%  extends 'uchet/main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="container">
+        <div class="card card-body">
+            <table class="table table-sm">
+				<tr>
+					<th>Department</th>
+                    <th>Salary fund</th>
+                    <th>Employees</th>
+				</tr>
+
+				{% for department in departments %}
+					<tr>
+						<td>{{department.name}}</td>
+                        <td></td>
+                        <td>
+                            {% for employee in employees %}
+                                {% if employee.position.otdel.name == department.name %}
+                                    {{ employee.last_name }}  {{ employee.first_name }},
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        
+					</tr>
+				{% endfor %}
+
+			</table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
