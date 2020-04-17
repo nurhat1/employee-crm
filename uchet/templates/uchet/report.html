@@ -1,9 +1,10 @@
 {%  extends 'uchet/main.html' %}
-
+{% load otdel_salary_tag %}
 {% block content %}
 
 <div class="row">
     <div class="container">
+        <br>
         <div class="card card-body">
             <table class="table table-sm">
 				<tr>
@@ -15,21 +16,28 @@
 				{% for department in departments %}
 					<tr>
 						<td>{{department.name}}</td>
-                        <td></td>
                         <td>
-                            {% for employee in employees %}
-                                {% if employee.position.otdel.name == department.name %}
-                                    {{ employee.last_name }}  {{ employee.first_name }},
-                                {% endif %}
+                            {% get_otdel_salary department.name %}$
+                        </td>
+                        <td>
+                            {% get_otdel_employees department.name as otdel_employees %}
+                            {% for employee in otdel_employees %}
+                                -{{ employee.last_name }} {{ employee.first_name }}
                             {% endfor %}
                         </td>
                         
 					</tr>
 				{% endfor %}
-
-			</table>
+            </table>
         </div>
+
+        <br>
+        <div class="card body">
+                <strong>Total salary fund: {% get_total_salary %}$</strong>
+        </div>
+
     </div>
+
 </div>
 
 {% endblock %}

@@ -11,13 +11,13 @@
 
 				<input type="text" placeholder="Search by name ... " class="search-name" name="search_name">
                 <select name="select_dep">
-					<option value="">---</option>
+					<option value="">department</option>
 					{% for department in departments %}
                     <option value="{{ department.name }}">{{ department.name }}</option>
                     {% endfor %}
                 </select>
                 <select name="select_pos">
-					<option value="">---</option>
+					<option value="">position</option>
 					{% for position in positions %}
                     <option value="{{ position.name }}">{{ position.name }}</option>
                     {% endfor %}
@@ -62,7 +62,7 @@
 				<tr>
 					<td>{{ employee.last_name }} {{ employee.first_name }}</td>
 					<td>{{ employee.position }}</td>
-                    <td>{{ employee.position.zarplata }}</td>
+                    <td>{{ employee.position.zarplata }}$</td>
                     <td>{{ employee.position.otdel.phone }}</td>
 					<td>{{ employee.hired_date }}</td>
 					<td><a href="{% url 'update_employee' employee.id %}" class="btn btn-sm btn-info">Update</a></td>

@@ -242,14 +242,10 @@ def getReport(request):
     #общий фонд
 
     departments = Otdel.objects.all()
-    employees = Employee.objects.all()
-
 
     context = {
-        'departments': departments,
-        'employees': employees
+        'departments': departments
     }
-
 
     return render(request, 'uchet/report.html', context)
 
